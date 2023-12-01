@@ -1,0 +1,32 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "sass": "sass ./src/sass/main.scss ./src/styles/index.css --watch"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.6.0",
+    "axios": "^1.6.2",
+    "next": "14.0.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-resizable-panels": "^0.0.61",
+    "socket.io-client": "^4.7.2",
+    "xterm": "^5.3.0",
+    "xterm-addon-fit": "^0.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.3",
+    "sass": "^1.69.5",
+    "typescript": "^5"
+  }
+}

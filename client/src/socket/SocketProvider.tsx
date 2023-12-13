@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import SocketService from "./SocketService";
-const backendServer = "http://localhost:4000";
+import { backend } from "@/config";
 
 interface ContextProps {
     socket: SocketService | null;
@@ -19,8 +19,10 @@ const SocketProvider = (props: { children: React.ReactNode }) => {
     const [socket, setSocket] = useState<SocketService | null>(null);
 
     const createSocket = useCallback(() => {
-        setSocket(new SocketService(backendServer));
-    }, [setSocket]);
+        if (backend) {
+            setSocket(new SocketService(backend));
+        }
+    }, [setSocket, backend]);
 
     useEffect(() => {
         createSocket();
@@ -34,7 +36,7 @@ const SocketProvider = (props: { children: React.ReactNode }) => {
 
     return (
         <Context.Provider value={value}>
-            { props.children }
+            {props.children}
         </Context.Provider>
     );
 };

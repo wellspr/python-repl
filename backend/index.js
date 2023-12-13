@@ -6,7 +6,9 @@ import { createServer } from "http";
 import SocketServer from "./socketServer.js";
 import PTYServer from "./ptyServer.js";
 
-const origin = ["http://localhost:5173", "http://localhost:3000"];
+const origin = [
+    "http://localhost:3000",
+];
 
 const app = express();
 app.use(express.json());
@@ -18,14 +20,18 @@ const socket = new SocketServer(httpServer, origin);
 socket.connect();
 
 app.post("/code", (req, res) => {
-    
+
     const ptyProcess = new PTYServer(socket, req.body.code);
 
     socket.onData(data => {
         ptyProcess.writeData(data);
     });
 
-    res.json({response: socket.socket.id});
+    if (socket.socket) {
+        res.json({ response: socket.socket.id });
+    }
 });
 
-httpServer.listen(port, () => console.log(`App listening on port ${port}`));
+httpServer.listen(port, () => {
+    console.log(`App listening on port ${port}`)
+});

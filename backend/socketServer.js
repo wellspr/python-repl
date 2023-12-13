@@ -22,13 +22,19 @@ class SocketServer {
     }
 
     onData(callback) {
-        this.socket.on("data", data => {
-            callback(data);
-        })
+        if (this.socket) {
+            this.socket.on("data", data => {
+                if (data) {
+                    callback(data);
+                }
+            })
+        }
     }
 
     emit(data) {
-        this.socket.emit("data", data);
+        if (this.socket) {
+            this.socket.emit("data", data);
+        }
     }
 
     getSocket() {

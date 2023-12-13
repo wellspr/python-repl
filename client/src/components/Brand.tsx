@@ -1,6 +1,6 @@
 const Brand = () => {
 
-    const appName = "Python REPL";
+    const appName = "Python Code - REPL - Terminal >_";
 
     return (
         <div className="brand">

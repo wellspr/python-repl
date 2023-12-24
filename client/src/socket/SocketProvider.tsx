@@ -22,7 +22,7 @@ const SocketProvider = (props: { children: React.ReactNode }) => {
         if (backend) {
             setSocket(new SocketService(backend));
         }
-    }, [setSocket, backend]);
+    }, [setSocket]);
 
     useEffect(() => {
         createSocket();
